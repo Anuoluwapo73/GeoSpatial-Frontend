@@ -47,8 +47,16 @@ const App = () => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ lat, lng, type: placeType }),
       });
+      
+      if (!res.ok) {
+        const errorData = await res.json();
+        console.error("Backend error:", errorData);
+        setStatus(`Error: ${errorData.error || 'Failed to fetch places'}`);
+        return;
+      }
+      
       const data = await res.json();
-      if (data.results.length > 0) {
+      if (data.results && data.results.length > 0) {
         setPlaces(data.results);
         setStatus(`Found ${data.results.length} ${placeType}s nearby.`);
       } else {
@@ -56,8 +64,8 @@ const App = () => {
         setStatus(`No ${placeType}s found nearby.`);
       }
     } catch (err) {
-      console.error(err);
-      setStatus(`Error fetching ${placeType}s.`);
+      console.error("Fetch error:", err);
+      setStatus(`Error fetching ${placeType}s: ${err.message}`);
     }
   };
 
