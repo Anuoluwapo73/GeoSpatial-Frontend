@@ -129,19 +129,40 @@ const App = () => {
               key={place.id}
               className="bg-white border-2 border-gray-100 p-5 rounded-xl shadow-sm hover:shadow-lg hover:border-indigo-200 transition-all duration-300 transform hover:-translate-y-1 cursor-pointer"
             >
-              <div className="flex flex-col gap-3">
-                <div className="flex items-start justify-between gap-2">
-                  <div className="flex items-start gap-2">
-                    <span className="flex-shrink-0 w-6 h-6 bg-indigo-600 text-white rounded-full flex items-center justify-center text-xs font-bold">
-                      {index + 1}
-                    </span>
-                    <strong className="text-gray-900 text-lg leading-tight">{place.name}</strong>
+              <div className="flex gap-4">
+                {place.image && (
+                  <div className="flex-shrink-0">
+                    <img 
+                      src={place.image} 
+                      alt={place.name}
+                      className="w-20 h-20 rounded-lg object-cover"
+                      onError={(e) => {
+                        e.target.style.display = 'none';
+                      }}
+                    />
                   </div>
-                </div>
-                <div className="text-gray-600 text-sm pl-8">
-                  {place.address}
-                </div>
-                <div className="flex flex-wrap gap-2 mt-1 pl-8">
+                )}
+                <div className="flex-1">
+                  <div className="flex items-start justify-between gap-2 mb-2">
+                    <div className="flex items-start gap-2">
+                      <span className="flex-shrink-0 w-6 h-6 bg-indigo-600 text-white rounded-full flex items-center justify-center text-xs font-bold">
+                        {index + 1}
+                      </span>
+                      <div>
+                        <strong className="text-gray-900 text-lg leading-tight block">{place.name}</strong>
+                        {place.rating && (
+                          <div className="flex items-center gap-1 mt-1">
+                            <span className="text-yellow-500">⭐</span>
+                            <span className="text-sm text-gray-600">{place.rating}</span>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                  <div className="text-gray-600 text-sm mb-3">
+                    {place.address}
+                  </div>
+                  <div className="flex flex-wrap gap-2 mt-1">
                   {place.distance && (
                     <span className="inline-flex items-center gap-1.5 bg-gradient-to-r from-indigo-500 to-purple-500 text-white px-3 py-1.5 rounded-full text-xs font-semibold shadow-sm">
                       <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -176,6 +197,7 @@ const App = () => {
                       N/A
                     </span>
                   )}
+                  </div>
                 </div>
               </div>
             </li>
