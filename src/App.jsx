@@ -35,7 +35,7 @@ const App = () => {
         setStatus("Location request timed out.");
         break;
       default:
-        setStatus("An unknown error occurred.");
+        setStatus("An unknown error occurred.")
     }
   };
 
