@@ -42,11 +42,12 @@ const App = () => {
   const fetchNearbyPlaces = async (lat, lng) => {
     try {
       setStatus(`Fetching nearby ${placeType}s...`);
-      const res = await fetch("https://geospatial-backend-vj8q.onrender.com", {
+      const res = await fetch("https://geospatial-backend-vj8q.onrender.com/api/nearby-places", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ lat, lng, type: placeType }),
       });
+
       
       if (!res.ok) {
         const errorData = await res.json();
