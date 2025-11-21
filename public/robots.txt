@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://geospatial-frontend-iw7h.onrender.com/sitemap.xml

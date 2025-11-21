@@ -90,6 +90,7 @@ const App = () => {
               <option value="hotel">🏨 Hotel</option>
               <option value="hospital">🏥 Hospital</option>
               <option value="bank">🏦 Bank</option>
+              <option value="stadium">🏟️ Stadium</option>
             </select>
           </label>
 
